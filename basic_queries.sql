@@ -27,3 +27,32 @@ FROM employee;
 SELECT COUNT(emp_id)
 FROM employee
 WHERE sex='F' AND birth_day >'1971-01-01';
+-- 8. Find the average employee salary. 
+SELECT AVG(salary)
+FROM employee;
+-- 9. Find the average male and female salary.
+SELECT AVG(salary),sex -- example of aggregation
+FROM employee
+GROUP BY sex;
+-- 10. Find the total sales by each salesman
+SELECT sum(total_sales), emp_id
+FROM works_with
+GROUP BY emp_id;
+-- 11. Which clients had maximum business with the company?
+SELECT sum(total_sales), client_id
+FROM works_with
+GROUP BY client_id 
+ORDER BY sum(total_sales) DESC;
+--  USING WILDCARDS
+-- 12. Find all clients that are LLC.
+SELECT *
+FROM client
+WHERE client_name LIKE '%LLC';
+-- 13. Find any branch suppliers that are in the label business.
+SELECT *
+FROM branch_supplier
+WHERE supplier_name LIKE '%label%';
+-- 14. Find any employee born in October.
+SELECT *
+FROM employee
+WHERE birth_day LIKE '____-10%';
